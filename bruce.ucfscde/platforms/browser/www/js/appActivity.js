@@ -1,4 +1,4 @@
-// the variables
+﻿// the variables
 // and a variable that will hold the layer itself – we need to do this outside the function so that we can use it to remove the layer later on 
 var earthquakelayer;
 // a global variable to hold the http request
@@ -124,4 +124,28 @@ function loadearthquakelayer(earthquakedata) {
             },
         }).addTo(mymap); 
     mymap.fitBounds(earthquakelayer.getBounds());
+}
+
+//*************************
+// functions to change the DIV content using AJAX - week 5
+
+var  xhr;  // define the global variable to process the AJAX request
+function callDivChange() {
+
+	 xhr = new XMLHttpRequest();
+
+	 // use an HTTP request here as Edge doesn't work with HTTPS over express
+	 xhr.open('GET', 'http://developer.cege.ucl.ac.uk:30297/testAJAX.html');
+	 xhr.onreadystatechange = processDivChange;
+	xhr.send();
+}  
+function processDivChange() {
+if (xhr.readyState < 4)    {}                     // while waiting response from server
+        //document.getElementById('ajaxtest').innerHTML = "Loading...";
+
+    else {
+		if (xhr.readyState === 4) {               // 4 = Response from server has been completely loaded.
+            document.getElementById('ajaxtest').innerHTML = xhr.responseText;
+    }
+}
 }
