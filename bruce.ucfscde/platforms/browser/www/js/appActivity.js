@@ -86,7 +86,7 @@ function getEarthquakes() {
    // set up the request
    client = new XMLHttpRequest();
    // make the request to the URL
-   client.open('GET','https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson');
+   client.open('GET','http://developer.cege.ucl.ac.uk:30297/getGeoJSON/united_kingdom_highway/geom');
    // tell the request what method to run that will listen for the response
    client.onreadystatechange = earthquakeResponse;  // note don't use earthquakeResponse() with brackets as that doesn't work
    // activate the request
@@ -133,9 +133,9 @@ var  xhr;  // define the global variable to process the AJAX request
 function callDivChange() {
 
 	 xhr = new XMLHttpRequest();
-
+     var filename = document.getElementById("filename").value;
 	 // use an HTTP request here as Edge doesn't work with HTTPS over express
-	 xhr.open('GET', 'http://developer.cege.ucl.ac.uk:30297/testAJAX.html');
+	 xhr.open('GET', 'http://developer.cege.ucl.ac.uk:30297/' + filename + '.html');
 	 xhr.onreadystatechange = processDivChange;
 	xhr.send();
 }  
